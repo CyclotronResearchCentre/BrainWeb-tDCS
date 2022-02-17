@@ -1,0 +1,9 @@
+# Visual Studio Code
+.vscode
+
+# Nextflow
+.nextflow
+.nextflow.log*
+work
+trace.txt*
+reports/

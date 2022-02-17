@@ -1,2 +1,41 @@
+
 * annex.backend=MD5E
 **/.git* annex.largefiles=nothing
+
+# Documentation
+**/*.rst annex.largefiles=nothing
+**/*.md annex.largefiles=nothing
+
+# Config and sidecar files
+**/*.json annex.largefiles=nothing
+**/*.tsv annex.largefiles=nothing
+**/*.yaml annex.largefiles=nothing
+**/*.config annex.largefiles=nothing
+
+# Code
+code/**/* annex.largefiles=nothing
+**/makefile annex.largefiles=nothing
+
+# Containers
+**/*.simg annex.largefiles=anything
+**/*.def annex.largefiles=nothing
+**/*.dockerfile annex.largefiles=nothing
+
+# MRI images
+**/*.nii annex.largefiles=anything
+**/*.nii.gz annex.largefiles=anything
+**/*.mnc annex.largefiles=anything
+**/*.mnc.gz annex.largefiles=anything
+**/*.dcm annex.largefiles=anything
+
+# Archives
+**/*.tar.gz annex.largefiles=anything
+**/*.7z annex.largefiles=anything
+**/*.zip annex.largefiles=anything
+
+# Finite element models
+**/*.msh annex.largefiles=anything
+**/*.pos annex.largefiles=anything
+
+# Database
+**/*.db annex.largefiles=anything
