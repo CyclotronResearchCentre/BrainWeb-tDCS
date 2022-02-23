@@ -11,6 +11,7 @@ Unreleased
 
 * Template for extracting experiments results.
 * Template for extracting roi results.
+* Package for interacting with the data.
 * Main pipeline and configuration.
 
 .. references
