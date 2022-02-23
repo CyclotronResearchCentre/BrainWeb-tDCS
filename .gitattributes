@@ -39,3 +39,6 @@ code/**/* annex.largefiles=nothing
 
 # Database
 **/*.db annex.largefiles=anything
+
+# Notebooks
+**/*.ipynb annex.largefiles=nothing
