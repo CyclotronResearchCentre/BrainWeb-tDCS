@@ -1,6 +1,10 @@
 # Visual Studio Code
 .vscode
 
+# Python
+__pycache__
+.ipynb_checkpoints
+
 # Nextflow
 .nextflow
 .nextflow.log*
