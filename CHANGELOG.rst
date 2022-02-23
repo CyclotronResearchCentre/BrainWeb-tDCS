@@ -13,6 +13,10 @@ Unreleased
 * Template for extracting roi results.
 * Package for interacting with the data.
 * Main pipeline and configuration.
+* Notebooks for:
+  * Evaluating the effect of anode placement.
+  * Evaluating the effect of conductivity profile.
+  * Comparing unipolar and bipolar montages.
 
 .. references
 
