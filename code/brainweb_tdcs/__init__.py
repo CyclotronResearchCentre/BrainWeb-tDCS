@@ -1,6 +1,6 @@
 from .exceptions import MissingEnvironmentVariable
-from .experiments import EXPERIMENTS, Experiment
 from .rois import ROIS, RegionOfInterest
+from .experiments import EXPERIMENTS, Experiment
 from .tissues import TISSUES, Tissue
 
 __all__ = [

@@ -13,6 +13,7 @@ class RegionOfInterest:
     name: str
     long_name: str = ""
     color: str = "#000000"
+    hatch_color: str = "#000000"
 
     def __str__(self) -> str:
         return self.name
@@ -39,8 +40,8 @@ class RegionOfInterest:
 
 
 ROIS = [
-    RegionOfInterest("MC", "Motor cortex", "#414487"),
-    RegionOfInterest("dlPFC", "Dorsolateral prefrontal cortex", "#2a788e"),
+    RegionOfInterest("MC", "Motor cortex", "#414487", "#6b6c99"),
+    RegionOfInterest("dlPFC", "Dorsolateral prefrontal cortex", "#2a788e", "#618d9e"),
     RegionOfInterest("vmPFC", "Ventromedial prefrontal cortex", "#22a884"),
     RegionOfInterest("IPS", "Intraparietal sulcus", "#7ad151"),
 ]

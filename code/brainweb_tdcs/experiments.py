@@ -17,6 +17,10 @@ class Experiment:
     is_bipolar: bool = field(default=True, repr=False)
 
     @property
+    def montage(self) -> str:
+        return f"{self.anode}-{self.cathode}"
+
+    @property
     def data_file_name(self) -> str:
         return f"roi-{self.roi.name}_anode-{self.anode}_cathode-{self.cathode}.csv"
 
