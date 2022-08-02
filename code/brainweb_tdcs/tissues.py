@@ -1,5 +1,8 @@
 from dataclasses import dataclass
 
+import chaospy as cp
+from scipy.stats import truncnorm
+
 
 @dataclass
 class Tissue:
@@ -10,6 +13,18 @@ class Tissue:
     k_mean: float
     k_std: float
     color: str = "#000000"
+
+    @property
+    def k(self) -> cp.Distribution:
+        return cp.TruncNormal(self.k_min, self.k_max, self.k_mean, self.k_std)
+
+    @property
+    def k_norm(self) -> cp.Distribution:
+        return cp.Normal(self.k_mean, self.k_std)
+    
+    @property
+    def k_uni(self) -> cp.Distribution:
+        return cp.Uniform(self.k_min, self.k_max)
 
 
 TISSUES = {

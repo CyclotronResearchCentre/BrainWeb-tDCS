@@ -36,6 +36,9 @@ class Experiment:
 
     def get_data(self) -> pd.DataFrame:
         return pd.read_csv(self.data_path, sep=";")
+    
+    def get_gpr_data(self) -> pd.DataFrame:
+        return pd.read_csv(str(self.data_path).replace(".csv", "_gpr.csv"), sep=";")
 
 
 EXPERIMENTS = [
