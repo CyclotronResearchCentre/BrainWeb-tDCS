@@ -20,7 +20,7 @@ sys.path.append(BRAINWEB_TDCS_CODE_DIR)
 from brainweb_tdcs import TISSUES
 
 RANDOM_SEED = 1234
-VOIS = ["e", "e_r"]
+VOIS = ["e", "e_r", "e_t"]
 
 
 def resize_pdf(tissue, pdf):
