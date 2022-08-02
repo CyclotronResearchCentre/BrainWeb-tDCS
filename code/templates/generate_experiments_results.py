@@ -3,12 +3,9 @@
 from pathlib import Path
 import sys
 
-from numpy.lib.function_base import place
-
 import chaospy as cp
 import pandas as pd
 import numpy as np
-from scipy.stats import gaussian_kde
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import ConstantKernel, Matern
 
