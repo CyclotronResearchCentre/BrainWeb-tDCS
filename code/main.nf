@@ -216,7 +216,7 @@ process convert_induced_transmembrane_potential_notebook {
         from inducedPotentialNotebookCh
     
     output:
-    path "${notebook.baseName}_roi-${roi}_anode-${anode}_cathode-${cathode}.html" \
+    path "${notebook.baseName}_roi-${roi}_anode-${anode}_cathode-${cathode}${(use_gpr) ? '_gpr' : ''}.html" \
         into htmlInducedPotentialNotebookCh
     
     shell:
@@ -235,10 +235,13 @@ process convert_induced_transmembrane_potential_notebook {
     '''
 }
 
-/*subjectNotebookCh = Channel
+subjectNotebookCh = Channel
     .fromPath( "${launchDir}/notebooks/subject.ipynb" )
     .combine(
         experimentIdCh4
+    )
+    .combine(
+        Channel.from(0, 1)
     )
 process convert_subject_notebook {
     tag "roi: ${roi}, anode: ${anode}, cathode: ${cathode}"
@@ -246,19 +249,19 @@ process convert_subject_notebook {
     publishDir "${launchDir}/results/html", mode: 'copy'
 
     input:
-    tuple file(notebook: "subject.ipynb"), roi, anode, cathode, id \
+    tuple file(notebook: "subject.ipynb"), roi, anode, cathode, id, use_gpr \
         from subjectNotebookCh
     
     output:
-    path "${notebook.baseName}_roi-${roi}_anode-${anode}_cathode-${cathode}.html" \
+    path "${notebook.baseName}_roi-${roi}_anode-${anode}_cathode-${cathode}${(use_gpr) ? '_gpr' : ''}.html" \
         into htmlSubjectNotebookCh
     
     shell:
     '''
     export BRAINWEB_TDCS_CODE_DIR="!{launchDir}/code"
     export BRAINWEB_TDCS_DATA_DIR="!{launchDir}/data"
-    export NOTEBOOK="!{notebook.baseName}_roi-!{roi}_anode-!{anode}_cathode-!{cathode}.ipynb"
-    papermill !{notebook} ${NOTEBOOK} -p experiment_id !{id}
+    export NOTEBOOK="!{notebook.baseName}_roi-!{roi}_anode-!{anode}_cathode-!{cathode}!{(use_gpr) ? '_gpr' : ''}.ipynb"
+    papermill !{notebook} ${NOTEBOOK} -p experiment_id !{id} -p use_gpr !{use_gpr}
     jupyter nbconvert ${NOTEBOOK} --to html \
         --TagRemovePreprocessor.remove_cell_tags 'hide_cell' \
         --TagRemovePreprocessor.remove_cell_tags 'parameters' \
@@ -267,4 +270,4 @@ process convert_subject_notebook {
         --TagRemovePreprocessor.remove_all_outputs_tags 'hide_output' \
         --allow-chromium-download
     '''
-}*/
+}
