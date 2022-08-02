@@ -58,7 +58,7 @@ if __name__ == "__main__":
             anode,
             cathode,
             conductivity_profile
-        """        
+        """
     ).fetchdf()
     # Format conductivity
     df["k_id"] = pd.Categorical(
@@ -66,9 +66,7 @@ if __name__ == "__main__":
         categories=list(range(21)),
     )
     df["k"] = pd.Categorical(
-        df["k_id"].apply(
-            lambda c: "reference" if c == 0 else f"halton_{c}"
-        ),
+        df["k_id"].apply(lambda c: "reference" if c == 0 else f"halton_{c}"),
         categories=["reference"] + [f"halton_{i + 1}" for i in range(20)],
     )
     # Format placement
@@ -81,9 +79,7 @@ if __name__ == "__main__":
     }
     df["p"] = pd.Categorical(
         df["anode"].apply(
-            lambda a: directions[
-                a[len(ANODE)] if len(ANODE) < len(a) else ""
-            ]
+            lambda a: directions[a[len(ANODE)] if len(ANODE) < len(a) else ""]
         ),
         categories=list(directions.values()),
     )
@@ -99,9 +95,7 @@ if __name__ == "__main__":
         "posterior": (0, -1),
     }
     for i, axis in enumerate(("x", "y")):
-        df[f"p_{axis}"] = df["p"].apply(
-            lambda name: coordinates[name][i]
-        )
+        df[f"p_{axis}"] = df["p"].apply(lambda name: coordinates[name][i])
     # Format final df
     df = df[
         [
@@ -129,7 +123,7 @@ if __name__ == "__main__":
             "j_y",
             "j_z",
             "j_r",
-            "j_t"
+            "j_t",
         ]
     ].sort_values(by=["sub", "k_id", "p_id"])
     # Save CSV file
