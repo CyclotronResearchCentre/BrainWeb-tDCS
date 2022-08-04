@@ -70,15 +70,15 @@ if __name__ == "__main__":
     }
     # Generate new dataset
     y_gpr = {voi: gpr[voi].predict(new_kappa[k_names].values) for voi in VOIS}
-    sub = np.repeat(data["sub"].unique(), n_p * len(new_kappa))
+    subs = np.repeat(data["sub"].unique(), n_p * len(new_kappa))
     new_data = pd.DataFrame(
         dict(
-            sub=sub,
+            sub=subs,
             k=data["k"].values.ravel(),
             k_id=data["k_id"].values.ravel(),
             **{
                 k_name: np.tile(
-                    np.repeat(new_kappa[k_names].values.ravel(), n_p), n_sub
+                    np.repeat(new_kappa[k_name].values.ravel(), n_p), n_sub
                 )
                 for k_name in k_names
             },
