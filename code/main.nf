@@ -70,7 +70,7 @@ process generate_experiments_results {
     template 'generate_experiments_results.py'
 }
 
-generatedFlagCh.into { generatedFlagCh1; generatedFlagCh2; generatedFlagCh3 }
+generatedFlagCh.into { generatedFlagCh1; generatedFlagCh2; generatedFlagCh3; generatedFlagCh4; generatedFlagCh5 }
 
 Channel
     .fromList(
@@ -198,13 +198,14 @@ process convert_bipolar_unipolar_notebook {
     '''
 }
 
-inducedPotentialNotebookCh = Channel
-    .fromPath( "${launchDir}/notebooks/induced_transmembrane_potential.ipynb" )
+inducedPotentialNotebookCh = experimentIdCh3
     .combine(
-        experimentIdCh3
+        Channel.fromPath( "${launchDir}/notebooks/induced_transmembrane_potential.ipynb" )
     )
     .combine(
         Channel.from(0, 1)
+    ).combine(
+        generatedFlagCh4, by: [0, 1, 2]
     )
 process convert_induced_transmembrane_potential_notebook {
     tag "roi: ${roi}, anode: ${anode}, cathode: ${cathode}"
@@ -212,7 +213,7 @@ process convert_induced_transmembrane_potential_notebook {
     publishDir "${launchDir}/results/html", mode: 'copy'
 
     input:
-    tuple file(notebook: "induced_transmembrane_potential.ipynb"), roi, anode, cathode, id, use_gpr \
+    tuple roi, anode, cathode, id, file(notebook: "induced_transmembrane_potential.ipynb"), use_gpr \
         from inducedPotentialNotebookCh
     
     output:
@@ -235,13 +236,14 @@ process convert_induced_transmembrane_potential_notebook {
     '''
 }
 
-subjectNotebookCh = Channel
-    .fromPath( "${launchDir}/notebooks/subject.ipynb" )
+subjectNotebookCh = experimentIdCh4
     .combine(
-        experimentIdCh4
+        Channel.fromPath( "${launchDir}/notebooks/subject.ipynb" )
     )
     .combine(
         Channel.from(0, 1)
+    ).combine(
+        generatedFlagCh5, by: [0, 1, 2]
     )
 process convert_subject_notebook {
     tag "roi: ${roi}, anode: ${anode}, cathode: ${cathode}"
@@ -249,7 +251,7 @@ process convert_subject_notebook {
     publishDir "${launchDir}/results/html", mode: 'copy'
 
     input:
-    tuple file(notebook: "subject.ipynb"), roi, anode, cathode, id, use_gpr \
+    tuple roi, anode, cathode, id, file(notebook: "subject.ipynb"), use_gpr \
         from subjectNotebookCh
     
     output:
