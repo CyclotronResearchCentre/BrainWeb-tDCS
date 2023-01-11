@@ -1,19 +1,16 @@
-=============
-BrainWeb tDCS
-=============
+# BrainWeb tDCS
+
 
 This repository contains the final stage of our data analyses.
 While it does not provide full access to the previous stages (mostly due to the fact that the whole workflow generated several dozens of TB of data), it contains all the records required to run the notebooks.
 
-Repository map
---------------
+## Repository map
 
 - The `code/` directory contains both a local `brainweb_tdcs` python package and the files required to run the Nextflow pipeline.
 - The `envs/` directory contains the Conda environment configuration used to run the notebooks.
 - The `notebooks/` directory contains the Jupyter notebooks used to produce the final results.
 
-How to
-------
+## How to
 
 Here are the general steps to run the notebooks. You can runn them manually one-by-one or use an automation tool such as Papermill.
 
@@ -35,8 +32,7 @@ The experiment IDs from 0 to 5 correspond to :
 4. F7-F8 (vmPFC)
 5. P3-P4 (IPS)
 
-License
--------
+## License
 
 Copyright (C) 2022 [GIGA CRC In-Vivo Imaging](https://www.gigacrc.uliege.be/), Liège, Belgium
 
